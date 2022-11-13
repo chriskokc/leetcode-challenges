@@ -15,22 +15,19 @@ public class BinaryTreeInorderTraversal {
             return resultList;
         }
 
-        while (current != null) {
-
-            TreeNode rightNode = current.right;
+        while (current != null || !treeStack.isEmpty()) {
 
             while (current != null) {
                 treeStack.push(current);
                 current = current.left;
             }
 
-            while (!treeStack.empty()) {
-                TreeNode nodeToAdd = treeStack.pop();
-                int valToStore = nodeToAdd.val;
-                resultList.add(valToStore);
-            }
+            current = treeStack.pop();
+            int valToStore = current.val;
+            resultList.add(valToStore);
 
-            current = rightNode;
+            current = current.right;
+
         }
 
         return resultList;
